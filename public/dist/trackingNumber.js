@@ -18,12 +18,15 @@ $(document).on("click", "#search", function () {
             let html = "";
             let no = 1;
 
+            console.log(typeof response.data[0].dataShipment.dilivered.shippedOrBilledDate);
+
             for (let index = 0; index < response.data.length; index++) {
                 html += `<tr>
                     <td>${no}</td>
                     <td>${response.data[index].track_number}</td>
                     <td>${ response.data[index].dataShipment == null ? 'Cannot find ticket information' : response.data[index].dataShipment.status }</td>
                     <td>${ response.data[index].dataShipment == null ? '-' : response.data[index].dataShipment.dilivered.date + ' : ' + response.data[index].dataShipment.dilivered.time }</td>
+                    <td>${ response.data[index].dataShipment == null ? '-' : response.data[index].dataShipment.dilivered.shippedOrBilledDate }</td>
                     <td>${ response.data[index].dataShipment == null ? '-' : response.data[index].dataShipment.shipmentTo.city + ', ' + response.data[index].dataShipment.shipmentTo.state + ', ' + response.data[index].dataShipment.shipmentTo.country }</td>
                     <td>${ response.data[index].dataShipment == null ? '-' : response.data[index].dataShipment.service }</td>
                 </tr>`
