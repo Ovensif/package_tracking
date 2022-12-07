@@ -1,0 +1,24 @@
+=== Addition syntax for UPS tracking system ===
+1. Add this in vendor/sauladam/src/Trackers/UPS/buildResponse function!!!
+
+- After : 
+if (null === $progressActivity['activityScan']) {
+    continue;
+}
+
+Add This :
+if(empty($contents['trackDetails']) || $contents['trackDetails'][0]['errorCode'] == 504) return $track->sortEvents();
+
+$track->addAdditionalDetails('shipmentDetails', [
+                'trackingNumber' => $contents['trackDetails'][0]['requestedTrackingNumber'],
+                'service'        => $contents['trackDetails'][0]['additionalInformation']['serviceInformation']['serviceName'],
+                'dilivered'      => [
+                    'date'                => $contents['trackDetails'][0]['deliveredDate'],
+                    'time'                => $contents['trackDetails'][0]['deliveredTime'],
+                    'shippedOrBilledDate' => $contents['trackDetails'][0]['additionalInformation']['shippedOrBilledDate']
+                ],
+                'weight'         => $contents['trackDetails'][0]['additionalInformation']['weight'],
+                'shipmentTo'     => $contents['trackDetails'][0]['shipToAddress'],
+                'leftAt'         => $contents['trackDetails'][0]['leftAt'],
+                'status'         => $contents['trackDetails'][0]['progressBarType']
+]);
