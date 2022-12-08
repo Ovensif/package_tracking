@@ -31,8 +31,8 @@
                         <th scope="col">No</th>
                         <th scope="col">Tracking Number</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Dilivered Date</th>
                         <th scope="col">Shipped / Bill Date</th>
+                        <th scope="col">Dilivered Date</th>
                         <th scope="col">Ship To</th>
                         <th scope="col">Service</th>
                     </tr>
